@@ -53,7 +53,7 @@ export default class Home extends React.Component {
         const { navigation } = this.props;
         const userData = navigation.getParam('userData', {});
 
-        if (this.props.navigation !== prevProps.navigation) {
+        if (this.props.navigation !== prevProps.navigation && userData!=={}) {
             this.setState({
                 name: userData.item.name,
                 age: userData.item.age.toString(),

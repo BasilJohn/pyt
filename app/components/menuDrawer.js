@@ -30,9 +30,7 @@ class MenuDrawer extends Component {
 navigateToScreen=(screen)=>{
 
     this.props.navigation.closeDrawer();
-    this.props.navigation.navigate(screen,{
-        userData: {}
-      });
+    this.props.navigation.navigate(screen);
    
 }
 
