@@ -10,7 +10,7 @@
 import React, { Component } from 'react';
 import {
     Text, View, TextInput,
-    ScrollView, KeyboardAvoidingView, TouchableOpacity, Alert
+    ScrollView, KeyboardAvoidingView, TouchableOpacity
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import Styles from './styles';
@@ -37,7 +37,9 @@ export default class Home extends React.Component {
             dob: "",
             locality: "",
             address: "",
-            guests: ""
+            guests: "",
+            userData: {}
+
         });
         this.props.navigation.openDrawer();
     }
@@ -51,9 +53,12 @@ export default class Home extends React.Component {
     componentDidUpdate = (prevProps, prevState) => {
 
         const { navigation } = this.props;
-        const userData = navigation.getParam('userData', {});
+        let userData = navigation.getParam('userData', {});
+        const clearData = navigation.getParam('clearData', false);
 
-        if (this.props.navigation !== prevProps.navigation && userData!=={}) {
+        if (this.props.navigation !== prevProps.navigation &&
+            (Object.entries(userData).length !== 0 && userData.constructor === Object)
+            && !clearData) {
             this.setState({
                 name: userData.item.name,
                 age: userData.item.age.toString(),
@@ -64,7 +69,6 @@ export default class Home extends React.Component {
             });
 
         }
-
     }
 
     handleSubmitButton = () => {
@@ -99,12 +103,15 @@ export default class Home extends React.Component {
         //     });
     }
 
-    render() {
 
+    render() {
         return (
-            <ScrollView >
+            <ScrollView bounces={false}
+                style={[Styles.mainContainer]}>
                 <KeyboardAvoidingView
                     style={Styles.keyboardAvoidingViewContainer}
+                    behavior="position"
+
                 >
                     <View style={Styles.container}>
                         <Icon
@@ -182,7 +189,7 @@ export default class Home extends React.Component {
                                     <Text style={Styles.formLabel}>Address</Text>
                                     <TextInput
                                         multiline
-                                        numberOfLines={4}
+                                        numberOfLines={10}
                                         placeholder="Enter Your Address"
                                         value={this.state.address}
                                         style={Styles.textInput}

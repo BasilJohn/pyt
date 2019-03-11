@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 
-const MenuItem = ({ navigation, icon, name, screenName, onItemPress }) =>
+const MenuItem = ({ icon, name, onItemPress }) =>
     <TouchableOpacity
         style={styles.menuItem}
         onPress={() => onItemPress()}
@@ -24,11 +24,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     menuItemText: {
-        fontWeight:"bold",
+        fontWeight: "bold",
         fontSize: 15,
         fontWeight: '300',
         margin: 15,
-        color:"#FFFFFF"
+        color: "#FFFFFF"
     }
 })
 

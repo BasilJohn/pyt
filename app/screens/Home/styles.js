@@ -4,11 +4,12 @@ export const deviceHeight = Dimensions.get("window").height;
 export const deviceWidth = Dimensions.get("window").width;
 
 export default (Styles = StyleSheet.create({
+    mainContainer:{
+        backgroundColor: '#32425B'
+    },
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#32425B',
+        backgroundColor: '#32425B'
     },
     menuIcon: {
         zIndex: 9,
@@ -45,11 +46,12 @@ export default (Styles = StyleSheet.create({
         borderWidth:1,
         borderColor:"#4C5E74",
         width:"90%",
-        alignSelf:"center"
+        alignSelf:"center",
+        height:50
     },
 
     keyboardAvoidingViewContainer:{
-        backgroundColor: "#A0DFCE",
+        backgroundColor: "#32425B",
         flex: 1,
         padding: 0
     },

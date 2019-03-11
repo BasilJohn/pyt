@@ -18,8 +18,9 @@ import MenuItem from '../components/menuItem';
 
 
 const menuData = [
-  {icon: "ios-home", name:"HOME", screenName:"Home", key: 1},
-  {icon: "ios-search", name:"SEARCH", screenName:"Search", key: 2}
+  { icon: "ios-home", name: "HOME", screenName: "Home", key: 1 },
+  { icon: "ios-search", name: "SEARCH", screenName: "Search", key: 2 },
+  { icon: "ios-images", name: "IMAGE LIST", screenName: "Inventory", key: 3 }
 ]
 
 
@@ -27,29 +28,33 @@ const menuData = [
 class MenuDrawer extends Component {
 
 
-navigateToScreen=(screen)=>{
+  navigateToScreen = (screen) => {
 
     this.props.navigation.closeDrawer();
-    this.props.navigation.navigate(screen);
-   
-}
+    this.props.navigation.navigate(screen, {
+      userData: {}
+    });
+
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <FlatList
-          data={menuData}
-          renderItem={({item}) => 
-          <MenuItem 
-          navigation={this.props.navigation} 
-          screenName={item.screenName} 
-          icon={item.icon} 
-          name={item.name} 
-          key={item.key} 
-          onItemPress={()=>this.navigateToScreen(item.screenName)}
+        <View style={styles.mainContainer}>
+          <FlatList
+            data={menuData}
+            renderItem={({ item }) =>
+              <MenuItem
+                navigation={this.props.navigation}
+                screenName={item.screenName}
+                icon={item.icon}
+                name={item.name}
+                key={item.key}
+                onItemPress={() => this.navigateToScreen(item.screenName)}
+              />
+            }
           />
-        }
-        />
+        </View>
       </View>
     );
   }
@@ -58,15 +63,19 @@ navigateToScreen=(screen)=>{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'#32425B'
+    backgroundColor: '#32425B'
+  },
+  mainContainer: {
+
+    paddingTop: 50
   },
   menuItem: {
-    flexDirection:'row'
+    flexDirection: 'row'
   },
   menuItemText: {
-    fontSize:15,
-    fontWeight:'300',
-    margin:15,
+    fontSize: 15,
+    fontWeight: '300',
+    margin: 15,
   }
 })
 

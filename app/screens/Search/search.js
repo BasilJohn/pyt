@@ -27,11 +27,11 @@ export default class Home extends React.Component {
         this.props.navigation.openDrawer();
     }
 
-    handleUserNamePress=(data)=>{
+    handleUserNamePress = (data) => {
 
-        this.props.navigation.navigate('Home',{
+        this.props.navigation.navigate('Home', {
             userData: data
-          });
+        });
     }
 
 
@@ -39,7 +39,7 @@ export default class Home extends React.Component {
 
     renderRowItem = itemData => {
         return (
-            <TouchableOpacity onPress={()=>this.handleUserNamePress(itemData)}>
+            <TouchableOpacity onPress={() => this.handleUserNamePress(itemData)}>
                 <View style={Styles.userNameContainer}>
                     <Text style={Styles.userName}>{itemData.item.name}</Text>
                 </View>
@@ -81,7 +81,11 @@ export default class Home extends React.Component {
                         color="#FFFFFF"
                         onPress={this.openDrawer}
                     />
-                    <SearchBar searchBy={this.filterRecords} />
+                    <SearchBar
+                        hideIcon={false}
+                        placeholderText="Search"
+                        searchBy={this.filterRecords}
+                    />
                 </View>
                 <View style={Styles.listContainers}>
                     <FlatList
